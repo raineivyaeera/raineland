@@ -56,13 +56,6 @@ a:hover {
 
 
 
-
-
-
-
-
-
-
 /* CLASSES */
 
 .headerh1 {
@@ -75,11 +68,13 @@ a:hover {
 .container {
     width: 90%;
     max-width: 1000px;
-    min-width: 350px;
+    min-width: 345px;
     margin: 0 auto;
     margin-top: 4.5em;
     text-align: center;
     zoom: 102%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .links {
