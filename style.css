@@ -91,6 +91,9 @@ h5 {
 .Spacer {
     margin-bottom: 25px;
 }
+.blogcontent p {
+    text-indent: 1em;
+}
 
 /* IDS */
 #landing-header {
