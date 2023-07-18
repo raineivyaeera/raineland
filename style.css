@@ -48,12 +48,14 @@ h5 {
     padding: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 50px;
     /* display: flex;
     flex-wrap: wrap;
     flex-direction: row; */
     display: grid;
     grid-auto-flow: dense;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.632);
 }
 .WrapperGallery img {
     align-self: center;
