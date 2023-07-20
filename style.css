@@ -26,6 +26,10 @@ h3 {
 h5 {
     margin-top: auto;
 }
+hr {
+    border-color: rgba(106, 0, 255, 0.75);
+    border-style: dashed;
+}
 
 /* CLASSES */
 .Wrapper {
