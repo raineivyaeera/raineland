@@ -64,6 +64,8 @@ hr {
 .WrapperGallery img {
     align-self: center;
     padding: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     min-width: 330px;
     max-width: 850px;
     width: 100%;
