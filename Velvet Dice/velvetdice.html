@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Dice</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="resources/asdf.png" />`
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <header style="margin-bottom: 20px; margin-top: 20px;">
+            <a href="#"><img src="resources/asdf2.png" alt="" width="80px" onclick="random_item(); printit(); random_card(); printit2(); random_texture(); printit3(); call(); random_contrast(); printit6(); generateRandomColor();"></a>
+        </header>
+
+        <a href="#" id="button1" onclick="random_item(); printit();">
+            <H1>Modal Interchange</H1>
+        </a>
+        <h2 id="text"> Imaj7 → ii-7 → IV+7 → V7 </h2>
+        <script>
+            var items = [" Imaj7", " ii-7", " iii-7", " IVmaj7", " V7", " vi-7", " vii-7(b5)",
+                " i-7", " ii-7", " bIIImaj7", " IV7", " v-7", " vi-7(b5)", " bVIImaj7",
+                " i-7", " bIImaj7", " bIII7", " iv-7", " v-7(b5)", " bVImaj7", " bvii-7",
+                " Imaj7", " II7", " iii-7", " #iv-7(b5)", " Vmaj7", " vi-7", " vii-7",
+                " I7", " ii-7", " iii-7(b5)", " IVmaj7", " v-7", " vi-7", " bVIImaj7",
+                " i-7", " ii-7(b5)", " bIIImaj7", " iv-7", " v-7", " bVImaj7", " bVII7",
+                " i-7(b5)", " bIImaj7", " biii-7", " iv-7", " bVmaj7", " bVI7", " bvii-7"];
+
+            function random_item(_item) {
+                return items[Math.floor(Math.random() * items.length)];
+            }
+
+            function printit() {
+                document.getElementById('text').innerHTML = (random_item(items)).toString() + " → " + (random_item(items)).toString() + " → " + (random_item(items)).toString() + " → " + (random_item(items)).toString();
+            }
+            printit();
+        </script>
+        <a href="#" id="button2" onclick="random_card(); printit2();">
+            <H1>Raine's Oblique Strategies</H1>
+        </a>
+        <h2 id="cardtext"> Testing is obsolete. </h2>
+
+        <script>
+            var items2 = ["Put It Down; Return",
+                "Ghost Pepper",
+                "Think of Every Ending",
+                "It's Yet Evolved",
+                "Pages like Paper",
+                "Watermelon Seeds",
+                "End Screen; Credits",
+                "What Has its Day Looked Like?",
+                "Combine & Consolidate",
+                "Advance the Gameboy",
+                "Granular like a Rock (In your Backyard)",
+                "Think of How It Tastes",
+                "Map It Out (Every Axis)",
+                "Higher Order (Abstraction)",
+                "Free Sample!",
+                "What Does the Plot Entail?",
+                "Does It Talk?",
+                "Literal",
+                "Every Way You Can Transition (Parameter)",
+                "Compare, Reference, Share; What Would They Do?",
+                "For a Moment",
+                "Grid Lines",
+                "Icon",
+                "Notes, Intervals, Stepping, Staircase, and Ladders",
+                "Randomize and Reuse (Recycle Please)",
+                "What's Something you've Never Done?",
+                "Download",
+                "'I'll Have the Usual'",
+                "Something You Hate With a Passion",
+                "Bundle It Up In Winter",
+                "Feel? Vibe? feel? vibe?",
+                "Forest Fade",
+                "Invent Something Completely and Utterly New from Usual Chemicals & Compounds",
+                "Learn Something New",
+                "Wikipedia (Relevant or Completely Random)",
+                "Waveform",
+                "(Z)xylophone, Zebra, Zimbabwe...",
+                "The Stars Above",
+                "I know",
+                "Yesterday, Tomorrow, Today",
+                "Do Not, Under Any Circumstances, Do It",
+                "Dim Lighting",
+                "It's too Bright",
+                "Poetry",
+                "The Classics",
+                "Out of your Comfort",
+                "Momento Mori",
+                "Controller",
+                "FXxxxxxxxxxxx{(xxxxxxx[xxxxxxxxx, [_xxxxx_]])}",
+                "Heartcrushing, Utterly...",
+                "Loop! the Unexpected! the Moment!",
+                "Go Through your Bookmarks!",
+                "A New Hobby/Interest",
+                "Pit, Core(/?,)",
+                "µL%±ÄóFAÄ█N6A·ü+",
+                "Wrinkles",
+                "New Program",
+                "New Dynamics",
+                "The Background",
+                "Splatters",
+                "Look at It Through the Lens of a Concerned Parent",
+                "Moments?",
+                "Concave, Convex?",
+                "Make an Art Piece for your Art Piece",
+                "Think of What the Headlines Will Say!",
+                "Ponder Math",
+                "Grochery List",
+                "Beatles: the Band, the Bug",
+                "Shock Them All",
+                "Pinecones",
+                "The Keys Represent Something Else",
+                "Picture In Gruesome Detail How The Lemon Tastes",
+                "Gate - Full Speed Ahead",
+                "Allow Fluidity to Do Its Work",
+                "Keep It Simple Stupid (KISS)",
+                "Overthinking: To Hell and Back",
+                "White Card...",
+                "Possum",
+                "Take a Previous Projects Outline"
+            ];
+            function random_card(_cards) {
+                return items2[Math.floor(Math.random() * items2.length)];
+            }
+            function printit2() {
+                console.log(random_card(items2));
+                document.getElementById('cardtext').innerHTML = (random_card(items2)).toString();
+            }
+            printit2();
+        </script>
+        <a href="#" id="button4" onclick="random_texture(); printit3();">
+            <H1>Texture</H1>
+        </a>
+        <h2 id="texturetext"> </h2>
+
+        <script>
+            var textures = ['Smooth',
+                'Rough',
+                'Soft',
+                'Fuzzy',
+                'Coarse',
+                'Silky',
+                'Bumpy',
+                'Grained',
+                'Shiny',
+                'Matte',
+                'Glossy',
+                'Slick',
+                'Wavy',
+                'Fluffy',
+                'Hairy',
+                'Prickly',
+                'Slippery',
+                'Sleek',
+                'Crispy',
+                'Grainy',
+                'Nubby',
+                'Gritty',
+                'Stiff',
+                'Plush',
+                'Satin',
+                'Corduroy',
+                'Pebbly',
+                'Felt',
+                'Linen',
+                'Worn',
+                'Torn',
+                'Tattered',
+                'Rugged',
+                'Weathered',
+                'Crinkled',
+                'Creased',
+                'Wrinkled',
+                'Dented',
+                'Pitted',
+                'Grooved',
+                'Grid',
+                'Embossed',
+                'Ridged',
+                'Knotty',
+                'Pocked',
+                'Knitted',
+                'Meshed',
+                'Lacy',
+                'Filmy',
+                'Delicate',
+                'Transparent',
+                'Sheer',
+                'Gauzy',
+                'Diaphanous',
+                'Gossamer',
+                'Veiled',
+                'Lustrous',
+                'Iridescent',
+                'Pearlized',
+                'Opalescent',
+                'Glittering',
+                'Metallic',
+                'Sparkling',
+                'Gleaming',
+                'Shimmering',
+                'Dull',
+                'Drab',
+                'Muted',
+                'Subdued',
+                'Tarnished',
+                'Worn-out',
+                'Tattered',
+                'Frayed',
+                'Threadbare',
+                'Patchy',
+                'Shaggy',
+                'Knobbly',
+                'Textured',
+                'Crumpled',
+                'Pliable',
+                'Supple',
+                'Malleable',
+                'Elastic',
+                'Resilient',
+                'Rubberized',
+                'Spongy',
+                'Squeezable',
+                'Cushioned',
+                'Spongy',
+                'Springy',
+                'Puffy',
+                'Airy',
+                'Flimsy',
+                'Insubstantial',
+                'Thin',
+                'Thick',
+                'Bulky',
+                'Weighty',
+                'Chunky',
+                'Massive',
+                'Compact',
+                'Solid',
+                'Sturdy',
+                'Rigid',
+                'Brittle',
+                'Fragile',
+                'Delicate',
+                'Breakable',
+                'Crisp',
+                'Tough',
+                'Resistant',
+                'Corroded',
+                'Eroded',
+                'Rusty',
+                'Worn-down',
+                'Chiseled',
+                'Carved',
+                'Etched',
+                'Engraved',
+                'Sculpted',
+                'Molded',
+                'Woven',
+                'Braided',
+                'Twisted',
+                'Tangled',
+                'Intertwined',
+                'Tied',
+                'Bonded',
+                'Connected',
+                'Interlocked',
+                'Lined',
+                'Striped',
+                'Checkered',
+                'Polka-dotted',
+                'Patterned',
+                'Marbled',
+                'Speckled',
+                'Spotted',
+                'Dappled',
+                'Variegated',
+                'Mottled',
+                'Flecked',
+                'Stippled',
+                'Blotchy',
+                'Dotted',
+                'Veiny',
+                'Striated',
+                'Ribbed',
+                'Veined',
+                'Grooved',
+                'Pitted',
+                'Crosshatched',
+                'Honeycombed',
+                'Slatted',
+                'Meshed',
+                'Crisscrossed',
+                'Weaved',
+                'Waffle',
+                'Honeyed',
+                'Gritted',
+                'Stuccoed',
+                'Pebbled',
+                'Graveled',
+                'Granulated',
+                'Pumice',
+                'Sanded',
+                'Polished',
+                'Burnished',
+                'Buffed',
+                'Honed',
+                'Beveled',
+                'Texturized',
+                'Sculptured',
+                'Stony',
+                'Sandy',
+                'Chalky',
+                'Powdery',
+                'Crumbly',
+                'Sandy',
+                'Gritty',
+                'Gypsum',
+                'Velvety',
+                'Chamois',
+                'Suede',
+                'Napped',
+                'Flocked',
+                'Brushed',
+                'Combed',
+                'Flanneled',
+                'Hessian',
+                'Muslin',
+                'Canvas',
+                'Tarpaulin',
+                'Burlap',
+                'Jute',
+                'Leathered',
+                'Beaded',
+                'Fringed',
+                'Tufted',
+                'Sequined',
+                'Embellished',
+                'Stitched',
+                'Threaded',
+                'Quilted',
+                'Padded',
+                'Insulated',
+                'Embroidered',
+                'Brocaded',
+                'Damask',
+                'Jacquard',
+                'Tapestried',
+                'Linen',
+                'Cotton',
+                'Woolen',
+                'Knit',
+                'Crocheted',
+                'Felted',
+                'Quilted',
+                'Patchwork',
+                'Cross-stitched',
+                'Beaded',
+                'Lace',
+                'Crochet',
+                'Macramé',
+                'Velvet',
+                'Chenille',
+                'Tulle',
+                'Lame',
+                'Mesh',
+                'Lattice',
+                'Crocodile',
+                'Snakeskin',
+                'Alligator',
+                'Ostrich',
+                'Scaled',
+                'Furrowed',
+                'Gashed',
+                'Scarred',
+                'Seamed',
+                'Cracked',
+                'Fissured',
+                'Split',
+                'Ruptured',
+                'Torn',
+                'Slashed',
+                'Shredded',
+                'Ripped',
+                'Pierced',
+                'Fractured'];
+            function random_texture(_tex) {
+                return textures[Math.floor(Math.random() * textures.length)];
+            }
+            function printit3() {
+                console.log(random_card(textures));
+                document.getElementById('texturetext').innerHTML = (random_texture(textures)).toString();
+            }
+            printit3();
+        </script>
+
+        <a href="#" id="button4" onclick="call();">
+            <H1>BPM/Time Signature/Rhythm</H1>
+        </a>
+            <h2 id="results"></h2>
+        <script>
+            function getRandomBPM() {
+                return Math.floor(Math.random() * (240 - 30 + 1)) + 30;
+            }
+
+            function getRandomTimeSignature() {
+                const timeSignatures = ["4/4", "3/4", "6/8", "5/4", "3/8", "5/8", "6/4", "7/8", "7/4", "9/4", "10/4", "10/8", "11/4", "11/8", "13/4", "13/8", "14/4", "14/8", "15/4", "15/8"];
+                const randomIndex = Math.floor(Math.random() * timeSignatures.length);
+                return timeSignatures[randomIndex];
+            }
+
+            function getRandomRhythm(timeSignature) {
+                let rhythm = "";
+                
+                let beatsPerMeasure = parseInt(timeSignature.split("/")[0]);
+
+                for (let i = 0; i < beatsPerMeasure; i++) {
+                    rhythm += Math.random() < 0.5 ? " X " : " - ";
+                }
+
+                return rhythm;
+            }
+
+            function call(){
+            const randomBPM = getRandomBPM();
+            const randomTimeSignature = getRandomTimeSignature();
+            const randomRhythm = getRandomRhythm(randomTimeSignature);
+            document.getElementById('results').innerText = "BPM: " + randomBPM.toString() + "\n" + "Time Signature: " + randomTimeSignature.toString() + "\n" + "Rhythm: " + randomRhythm;
+            }
+            call();
+        </script>
+        <a href="#" id="button5" onclick="generateRandomColor();">
+            <H1>Color Generator</H1>
+        </a>
+        <h2 id="color-code"></h2>
+        <div id="colordiv">
+        </div>
+        <script>
+            function getRandomColor() {
+                const letters = "0123456789ABCDEF";
+                let color = "#";
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            function generateRandomColor() {
+                const colorBox = document.getElementById("colordiv");
+                const colorCode = document.getElementById("color-code");
+                const randomColor = getRandomColor();
+
+                colorBox.style.backgroundColor = randomColor;
+                colorCode.textContent = randomColor;
+            } generateRandomColor();
+        </script>
+        <a href="#" id="button6" onclick="random_contrast(); printit6();">
+            <H1>Contrasts Interpolate</H1>
+        </a>
+        <h2 id="contrasttext"></h2>
+        <script>
+            var contrasts = ['Hologram - Solid',
+                'Whisper - Roar',
+                'Microscopic - Gigantic',
+                'Transparent - Opaque',
+                'Weightless - Heavy',
+                'Ultraviolet - Infrared',
+                'Phobia - Obsession',
+                'Transparent - Camouflaged',
+                'Apathetic - Zealous',
+                'Melancholy - Ecstatic',
+                'Whimsical - Pragmatic',
+                'Ephemeral - Eternal',
+                'Eerie - Familiar',
+                'Surreal - Mundane',
+                'Chaos - Order',
+                'Frenetic - Serene',
+                'Paralyzed - Hyperactive',
+                'Lucid - Confusing',
+                'Anarchy - Tyranny',
+                'Hallucination - Reality',
+                'Solitary - Crowded',
+                'Muted - Vivid',
+                'Solitude - Commotion',
+                'Obscure - Prominent',
+                'Whispers - Shouts',
+                'Absurd - Logical',
+                'Cacophony - Harmony',
+                'Invisible - Conspicuous',
+                'Chaos - Symmetry',
+                'Unravel - Enigma',
+                'Frugal - Lavish',
+                'Fragmented - Unified',
+                'Disconnected - Intertwined',
+                'Isolated - Connected',
+                'Clumsy - Graceful',
+                'Static - Dynamic',
+                'Aversion - Affection',
+                'Obscure - Well-known',
+                'Inconspicuous - Flamboyant',
+                'Scarcity - Abundance',
+                'Camouflage - Spotlight',
+                'Irrelevant - Pertinent',
+                'Transparent - Shrouded',
+                'Insomnia - Hibernation',
+                'Jumbled - Organized',
+                'Unkempt - Immaculate',
+                'Anxious - Composed',
+                'Conformity - Nonconformity',
+                'Subtle - Blatant',
+                'Inconsistent - Unchanging',
+                'Esoteric - Common',
+                'Fugitive - Confined',
+                'Mirage - Reality',
+                'Elusive - Obvious',
+                'Discordant - Melodic',
+                'Disoriented - Oriented',
+                'Enigmatic - Clear',
+                'Ghostly - Solid',
+                'Anonymous - Famous',
+                'Volatile - Stable',
+                'Transient - Permanent',
+                'Enigma - Answer',
+                'Surreal - Ordinary',
+                'Muted - Resonant',
+                'Bizarre - Conventional',
+                'Disjointed - Coherent',
+                'Uncertainty - Certainty',
+                'Nonsense - Sense',
+                'Alien - Native',
+                'Unfamiliar - Recognizable',
+                'Abstract - Concrete',
+                'Elusive - Accessible',
+                'Paranormal - Normal',
+                'Paradox - Straightforward',
+                'Disorganized - Methodical',
+                'Discord - Accord',
+                'Ineffable - Explainable',
+                'Asymmetrical - Symmetrical',
+                'Unruly - Disciplined',
+                'Unpredictable - Predictable',
+                'Grotesque - Beautiful',
+                'Unseen - Evident',
+                'Exotic - Familiar',
+                'Bewildering - Clear-cut',
+                'Cryptic - Obvious',
+                'Unworldly - Earthly',
+                'Nonsensical - Sensible',
+                'Chaotic - Systematic',
+                'Unnoticed - Conspicuous',
+                'Incoherent - Articulate',
+                'Unusual - Typical',
+                'Inanimate - Living',
+                'Misfit - Conformist',
+                'Delirium - Sanity',
+                'Spectral - Solid',
+                'Ineffable - Speakable',
+                'Disjointed - Unified',
+                'Unthinkable - Rational',
+                'Elaborate - Simple',
+                'Hypnotic - Wakeful',
+                'Right - Wrong',
+                'Straight - Crooked',
+                'Safe - Risky',
+                'Correct - Incorrect',
+                'Praise - Criticize',
+                'Present - Absent',
+                'Unity - Division',
+                'Beneath - Above',
+                'Gratitude - Ingratitude',
+                'Positive - Neutral',
+                'Acceptance - Rejection',
+                'Introduce - Remove',
+                'Polished - Rough',
+                'Ascendancy - Decline',
+                'Visible - Hidden',
+                'Obey - Defy',
+                'Gain - Expense',
+                'Increase - Diminish',
+                'Attractive - Repulsive',
+                'Sober - Drunk',
+                'Over - Under',
+                'Construct - Demolish',
+                'Pleasure - Displeasure',
+                'Whisper - Shout',
+                'Whisper - Scream',
+                'Approval - Disapproval',
+                'Conquer - Surrender',
+                'Expand - Constrict',
+                'Encourage - Discourage',
+                'Obvious - Ambiguous',
+                'Liberation - Imprisonment',
+                'Glorious - Shameful',
+                'Tidy - Messy',
+                'Strength - Weakness',
+                'Attract - Repel',
+                'Fortune - Misfortune',
+                'Generous - Stingy',
+                'Excite - Bore',
+                'Scatter - Gather',
+                'Careful - Careless',
+                'Friendly - Hostile',
+                'Compliment - Insult',
+                'Appear - Vanish',
+                'Advance - Retreat',
+                'Blessing - Curse',
+                'Connect - Detach',
+                'Graceful - Clumsy',
+                'Soothe - Agitate',
+                'Invent - Destroy',
+                'Gain - Depletion',
+                'Ample - Scarce',
+                'Include - Omit',
+                'Emerge - Disappear',
+                'Honesty - Dishonesty',
+                'Graceful - Awkward',
+                'Polite - Impolite',
+                'Decrease - Appreciate',
+                'Good - Evil',
+                'Collapse - Expand',
+                'True - Untrue',
+                'Cheerful - Gloomy',
+                'Help - Hinder',
+                'Accept - Decline',
+                'Separate - Combine',
+                'Intricate - Simple',
+                'Tame - Wild',
+                'Plentiful - Sparse',
+                'Entrance - Exit',
+                'Collect - Scatter',
+                'Free - Bound',
+                'Reward - Punishment',
+                'Celebrate - Mourn',
+                'Fragile - Robust',
+                'Construct - Ruin',
+                'Gradual - Sudden',
+                'Ignite - Extinguish',
+                'Inclusive - Exclusive',
+                'Clear - Unclear',
+                'Harmony - Discord',
+                'Forward - Reverse',
+                'Efficient - Inefficient',
+                'Pro - Con',
+                'Unity - Disunity',
+                'Evolve - Devolve',
+                'Celebrate - Ignore',
+                'Generous - Greedy',
+                'Decorate - Strip',
+                'Multiply - Divide',
+                'Enhance - Diminish',
+                'Abundant - Meager',
+                'Conquer - Retreat',
+                'Accept - Reject',
+                'Honest - Deceptive',
+                'Joyful - Dismal',
+                'Excite - Calm',
+                'Inhale - Exhale',
+                'Fertile - Barren',
+                'Launch - Land',
+                'Optimistic - Pessimistic',
+                'Gentle - Brutal'
+            ];
+            function random_contrast(_con) {
+                return contrasts[Math.floor(Math.random() * contrasts.length)];
+            }
+            function printit6() {
+                console.log(random_contrast(contrasts));
+                document.getElementById('contrasttext').innerHTML = (random_contrast(contrasts)).toString();
+            }
+            printit6();
+        </script>
+    </div>
+</body>
+
+</html>

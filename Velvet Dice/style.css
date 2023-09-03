@@ -1,0 +1,36 @@
+:root {
+    --backgroundcolor: rgb(38, 0, 30);
+    --colorprimary: rgb(255, 26, 58);
+    --colorsecondary: rgb(228, 196, 153);
+}
+body {
+    margin: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    background-color: var(--backgroundcolor);
+}
+img{
+    padding: 5px;
+    padding-top: 0px;
+    margin: 0px;
+}
+p, h1, h2, h3, a {
+    color: var(--colorprimary);
+    font-family: 'Heebo', sans-serif;
+}
+h2 {
+    color: var(--colorsecondary);
+}
+
+h1:hover, h2:hover, img:hover {
+    translate: 0px -1.25px;
+}
+
+#colordiv {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+header {
+    margin: 0px;
+}
