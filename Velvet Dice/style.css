@@ -31,6 +31,13 @@ h1:hover, h2:hover, img:hover {
     height: 100px;
     background-color: black;
 }
+#colordiv:hover {
+    translate: 0px -1.25px;
+}
 header {
+    margin: 0px;
+}
+#emojitext {
+    font-size: 38px;
     margin: 0px;
 }
