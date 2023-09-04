@@ -1,0 +1,36 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(2, 0, 4);
+    color: white;
+    font-family: 'Palanquin Dark', sans-serif;
+    text-align: center;
+}
+img {
+    margin-left: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+textarea {
+    margin: 8px;
+    padding: 8px;
+    width: 350px;
+    height: 350px;
+    border-style: dashed;
+    border-width: 3.5px;
+    border-color: white;
+    border-radius: 0px;
+    background-color: black;
+    color: white;
+    float:left;
+}
+
+.content {
+    clear: both;
+    margin: 0px;
+    padding: 0px;
+}
+.container {
+    margin: 0 auto;
+    max-width: 85%;
+}
