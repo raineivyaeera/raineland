@@ -1,0 +1,59 @@
+body,
+html {
+    height: 100%;
+    margin: 0px;
+    font-family: 'Heebo', sans-serif;
+    font-family: 'Inconsolata', monospace;
+    font-family: 'Palanquin Dark', sans-serif;
+    font-weight: 800;
+    min-width: 330px;
+    background-color: rgb(235, 235, 235);
+}
+
+h1 {
+    font-size: 5pc;
+    user-select: none;
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.incdec {
+    height: 41%;
+    width: 100%;
+}
+
+.timerstatus {
+    height: 18%;
+    width: 100%;
+}
+
+.incdecitem {
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
+.timerstatusitem {
+    float: left;
+    height: 100%;
+    width: 33.333333333334%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*:hover {
+    background-color: rgba(0, 0, 0, 0.035);
+    transition: background-color 0.25s ease;
+}
+
+h1:hover {
+    background-color: transparent;
+}

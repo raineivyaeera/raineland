@@ -4,3 +4,4 @@ function newTextArea() {
 
     insertionDIV.insertBefore(textarea, insertionDIV.firstChild);
 }
+// <input type="range" min="0" max="100" value="50" id="slider">

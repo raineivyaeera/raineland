@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Inconsolata:wght@200;300;400;500;600;700;800;900&family=Palanquin+Dark:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="incdec">
+            <div class="incdecitem" id="plus1button" onclick="add1min();"></div>
+            <div class="incdecitem" id="plus5button" onclick="add5min();" style="text-align: right;"></div>
+        </div>
+        <div class="timerstatus">
+            <div class="timerstatusitem" id="pausebutton" onclick="pause();"></div>
+
+            <div class="timerstatusitem" id="timertext" onclick="start();">
+
+                <h1 id="timertexth1">25:00</h1>
+
+            </div>
+            <div class="timerstatusitem" id="resetbutton" onclick="reset();" style="text-align: right;"></div>
+        </div>
+        <div class="incdec">
+            <div class="incdecitem" id="minus1button" onclick="sub1min();" ></div>
+            <div class="incdecitem" id="minus5button" onclick="sub5min();" style="text-align: right;"></div>
+        </div>
+    </div>
+    <script src="../BLT/BLT.js"></script>
+</body>
+
+</html>
