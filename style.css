@@ -2,7 +2,9 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-image: url('images/thumb-1920-1148181.png');
+    /* background-image: url('images/thumb-1920-1148181.png'); */
+    background-image: url('images/Untitled.png');
+    /* purple container color: #290D56 */
     background-color: black;
     background-attachment: fixed;
     background-size: cover;
@@ -31,6 +33,14 @@ hr {
     border-style: dashed;
 }
 
+a, .hoverable {
+    transition: transform 0.15s ease-in-out;
+  }
+  
+  a:hover, .hoverable:hover {
+    transform: scale(1.08);
+  }
+
 /* CLASSES */
 .Wrapper {
     margin: 0 auto;
@@ -44,7 +54,8 @@ hr {
     align-items: center;
     width: 80%;
     max-width: 50lh;
-    background-color: rgba(16, 16, 16, 0.55);
+    /* background-color: rgba(16, 16, 16, 0.55); */
+    background-color: rgba(21, 0, 55, 0.8);
     border-radius: 8px;
 }
 .WrapperGallery {  
