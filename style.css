@@ -3,7 +3,7 @@ body {
     margin: 0px;
     padding: 0px;
     /* background-image: url('images/thumb-1920-1148181.png'); */
-    background-image: url('images/Untitled.png');
+    background-image: url('images/nightForest2.png');
     /* purple container color: #290D56 */
     background-color: black;
     background-attachment: fixed;
@@ -55,7 +55,9 @@ a, .hoverable {
     width: 80%;
     max-width: 50lh;
     /* background-color: rgba(16, 16, 16, 0.55); */
-    background-color: rgba(21, 0, 55, 0.8);
+    /* background-color: rgba(21, 0, 55, 0.8); */
+    
+    background-color: rgba(7, 5, 47, 0.8);
     border-radius: 8px;
 }
 .WrapperGallery {  
@@ -143,3 +145,11 @@ a, .hoverable {
     text-align: left;
     text-indent: 1em;
 }
+.rainbow-text {
+    font-weight: bold;
+    background: linear-gradient(90deg, red, orange, yellow, rgb(0, 255, 0), violet); opacity: 90%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
