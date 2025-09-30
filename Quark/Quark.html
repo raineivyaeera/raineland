@@ -1,236 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Quark Web</title>
-<style>
-  body {
-    font-family: monospace;
-    background-color: #1e1e1e;
-    color: #f5f5f5;
-    padding: 20px;
-  }
-  .quark-section {
-    margin-bottom: 12px;
-  }
-  .quark-label {
-    font-weight: bold;
-  }
-  .reroll-btn {
-    margin-left: 8px;
-    cursor: pointer;
-    background: #333;
-    color: #f5f5f5;
-    border: none;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-  .quark-color {
-    display: inline-block;
-    font-weight: bold;
-  }
-</style>
+    <meta charset="UTF-8">
+    <title>QUARK</title>
+    <style>
+        @font-face {
+            font-family: "Mononoki Nerd";
+            src: url("Mononoki/MononokiNerdFont-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Mononoki Nerd";
+            src: url("Mononoki/MononokiNerdFont-Italic.ttf") format("truetype");
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: "Mononoki Nerd";
+            src: url("Mononoki/MononokiNerdFont-Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Mononoki Nerd";
+            src: url("Mononoki/MononokiNerdFont-BoldItalic.ttf") format("truetype");
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        body {
+            font-family: "Mononoki Nerd", monospace;
+            font-size: clamp(20px, 2vw, 24px);
+            padding: 20px;
+            color: rgba(250,250,250,0.85);
+            background-color: #000;
+            position: relative;
+            word-break: keep-all;
+            overflow-wrap: normal;
+            hyphens: none;
+            white-space: normal;
+        }
+        a {
+            color: rgba(250,250,250,0.95);
+            text-decoration: none;
+        }
+        a:link,
+        a:visited,
+        a:hover,
+        a:active {
+            color: rgba(250,250,250,0.95);
+            text-decoration: none;
+        }
+
+        .quark-section {
+            margin-bottom: 12px;
+        }
+
+        #quark-sketch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+    </style>
 </head>
+
 <body>
+    <div id="quark-sketch"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script>
+        let cols = 16;
+        let rows = 16;
+        let noiseOffset = 0;
+        let hueBase = 330;
+        let hueAmplitude = 8;
+        let hueAngle = 0;
 
-<div class="quark-section">
-  <span class="quark-label"></span>
-  <span id="color" class="quark-color"></span>
-  <button class="reroll-btn" onclick="rerollColor()">↻</button>
-</div>
+        function setup() {
+            let cnv = createCanvas(windowWidth, windowHeight);
+            cnv.parent('quark-sketch');
+            colorMode(HSB, 360, 100, 100, 1);
+            noStroke();
+        }
 
-<div class="quark-section">
-  <span class="quark-label">Card:</span> <span id="card"></span>
-  <button class="reroll-btn" onclick="rerollCard()">↻</button>
-</div>
+        function draw() {
+            background(0);
+            noiseOffset += 0.005;
+            hueAngle += 0.003;
 
-<div class="quark-section">
-  <span class="quark-label">Sensory:</span> <span id="sensory"></span>
-  <button class="reroll-btn" onclick="rerollSensory()">↻</button>
-</div>
+            let currentHue = hueBase + sin(hueAngle) * hueAmplitude;
+            let cellW = width / cols;
+            let cellH = height / rows;
 
-<div class="quark-section">
-  <span class="quark-label">Emoji:</span> <span id="emoji"></span>
-  <button class="reroll-btn" onclick="rerollEmoji()">↻</button>
-</div>
+            for (let i = 0; i < cols; i++) {
+                for (let j = 0; j < rows; j++) {
+                    let n = noise(i * 0.3, j * 0.3, noiseOffset);
+                    let brightness = map(n, 0, 1, 5, 50); // darker = 40
+                    fill(currentHue, 100, brightness, 0.4);
+                    rect(i * cellW, j * cellH, cellW, cellH);
+                }
+            }
+        }
 
-<div class="quark-section">
-  <span class="quark-label">Tone–Genre:</span> <span id="genre"></span>
-  <button class="reroll-btn" onclick="rerollGenre()">↻</button>
-</div>
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+    </script>
 
-<div class="quark-section">
-  <span class="quark-label">Chord Progression:</span> <span id="chords"></span>
-  <button class="reroll-btn" onclick="rerollChord()">↻</button>
-</div>
+    <div class="quark-section">
+        <span class="quark-label"></span>
+        <a href="#" onclick="renderQuark();"><span id="color" style="color: #DD0C3D">QUARK</span></a>
+        <!-- <a href="#" onclick="renderQuark();"><span id="color" style="color: #ff1744">QUARK</span></a>-->
+    </div>
 
-<div class="quark-section">
-  <span class="quark-label">BPM:</span> <span id="bpm"></span>
-  <button class="reroll-btn" onclick="rerollBPM()">↻</button>
-</div>
+    <br>
 
-<div class="quark-section">
-  <span class="quark-label">Time Signature:</span> <span id="time"></span>
-  <button class="reroll-btn" onclick="rerollTime()">↻</button>
-</div>
+    <div class="quark-section">
+        <a href="#" onclick="rerollCard();"><span class="quark-label">Card:</span></a> <span id="card"></span>
+    </div>
 
-<div class="quark-section">
-  <span class="quark-label">Rhythm:</span> <span id="rhythm"></span>
-  <button class="reroll-btn" onclick="rerollRhythm()">↻</button>
-</div>
+    <div class="quark-section">
+        <a href="#" onclick="rerollSensory();"><span class="quark-label">Sensory:</span></a> <span id="sensory"></span>
+    </div>
 
-<script>
-const cardsURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/cards.json";
-const texturesURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/textures.json";
-const emojisURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/emojis.json";
-const genresURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/genres.json";
-const chordsURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/chords.json";
+    <div class="quark-section">
+        <a href="#" onclick="rerollEmoji();"><span class="quark-label">Emoji:</span></a> <span id="emoji"></span>
+    </div>
 
-// --- Seedable PRNG like Go's ---
-function xoshiro128ss(seed) {
-  let s = [seed, seed ^ 0x6a09e667, seed ^ 0xbb67ae85, seed ^ 0x3c6ef372];
+    <div class="quark-section">
+        <a href="#" onclick="rerollGenre();"><span class="quark-label">Tone–Genre:</span></a> <span id="genre"></span>
+    </div>
 
-  function rotl(x, k) {
-    return (x << k) | (x >>> (32 - k));
-  }
+    <br>
 
-  return function() {
-    const result = rotl(s[0] + s[3], 7) + s[0];
-    const t = s[1] << 9;
-    s[2] ^= s[0];
-    s[3] ^= s[1];
-    s[1] ^= s[2];
-    s[0] ^= s[3];
-    s[2] ^= t;
-    s[3] = rotl(s[3], 11);
-    return (result >>> 0) / 0x100000000;
-  }
-}
+    <div class="quark-section">
+        <a href="#" onclick="rerollChord();"><span class="quark-label">Chord Progression:</span></a> <span id="chords"></span>
+    </div>
 
-// Create a generator seeded by current time
-const seed = Date.now() & 0xffffffff;
-const rand = xoshiro128ss(seed);
+    <div class="quark-section">
+        <a href="#" onclick="rerollBPM();"><span class="quark-label">BPM:</span></a> <span id="bpm"></span>
+    </div>
 
-let quarkData = { card: [], sensory: [], emoji: [], genre: [], chord: [] };
-let timeSigs = ["4/4","3/4","6/8","5/4","3/8","5/8","6/4","7/8","7/4","9/4","10/4","10/8","11/4","11/8","13/4","13/8","14/4","14/8","15/4","15/8"];
-let chordProg = [], rhythm = [], currentTimeSig = "", bpm = 120;
-let color = { r: 0, g: 0, b: 0 };
+    <div class="quark-section">
+        <a href="#" onclick="rerollTime();"><span class="quark-label">Time Signature:</span></a> <span id="time"></span>
+    </div>
 
-async function loadJSON() {
-  const urls = { card: cardsURL, sensory: texturesURL, emoji: emojisURL, genre: genresURL, chord: chordsURL };
-  for (const key in urls) {
-    try {
-      const res = await fetch(urls[key]);
-      if (!res.ok) throw new Error("Fetch failed");
-      quarkData[key] = await res.json();
-    } catch(e) {
-      console.error(`${key} load error:`, e);
-      quarkData[key] = [`Error loading JSON`];
-    }
-  }
-}
+    <div class="quark-section">
+        <a href="#" onclick="rerollRhythm();"><span class="quark-label">Rhythm:</span></a> <span id="rhythm"></span>
+    </div>
 
-function pickRandom(arr) {
-  return arr[Math.floor(rand() * arr.length)];
-}
+    <script>
+        const cardsURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/cards.json";
+        const texturesURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/textures.json";
+        const emojisURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/emojis.json";
+        const genresURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/genres.json";
+        const chordsURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/chords.json";
 
-function generateChordProg() {
-  chordProg = [];
-  for (let i = 0; i < 4; i++) {
-    chordProg.push(pickRandom(quarkData.chord));
-    if (i < 3) chordProg.push("=>");
-  }
-}
+        function goRand(seed) {
+            let s = BigInt(seed) & ((1n << 63n) - 1n);
+            const mask = (1n << 63n) - 1n;
+            const a = 6364136223846793005n;
+            const c = 1n;
 
-function generateBPM() {
-  bpm = 40 + Math.floor(rand() * 160);
-  let rng = Math.floor(rand() * 10);
-  if (bpm <= 100 && rng >= 3) bpm += Math.floor(rand() * 55) + 25;
-  if (bpm >= 150 && rng >= 3) bpm -= Math.floor(rand() * 55) + 25;
-}
+            function next63() {
+                s = (s * a + c) & mask;
+                return s;
+            }
 
-function generateColor() {
-  color.r = Math.floor(rand() * 256);
-  color.g = Math.floor(rand() * 256);
-  color.b = Math.floor(rand() * 256);
-}
+            function Int63() {
+                return next63();
+            }
 
-function generateTime() {
-  currentTimeSig = pickRandom(timeSigs);
-}
+            function Float64() {
+                const val = Int63() >> 10n;
+                return Number(val) / 0x20000000000000;
+            }
 
-function generateRhythm() {
-  rhythm = [];
-  let count = parseInt(currentTimeSig.split("/")[0]);
-  let xCount = 0;
-  for (let i = 0; i < count; i++) {
-    if (rand() > 0.5) { rhythm.push("x"); xCount++; }
-    else rhythm.push("-");
-  }
-  if (xCount === 0 && rhythm.length > 0) rhythm[rhythm.length-1] = "x";
-}
+            function Intn(n) {
+                if (n <= 0) throw new Error("invalid argument to Intn");
+                const bigN = BigInt(n);
+                while (true) {
+                    let v = Int63();
+                    let m = v % bigN;
+                    if (v - m + (bigN - 1n) >= 0n) return Number(m);
+                }
+            }
 
-function renderQuark() {
-  generateColor(); // ensure color rerolls with full set
+            return {
+                Seed: (newSeed) => { s = BigInt(newSeed) & mask; },
+                Int63,
+                Float64,
+                Intn
+            };
+        }
 
-  document.getElementById('color').textContent = "QUARK";
-  document.getElementById('color').style.color = `rgb(${color.r},${color.g},${color.b})`;
+        const seed = Date.now() & 0x7fffffff;
+        const rand = goRand(seed);
 
-  document.getElementById('card').textContent = pickRandom(quarkData.card);
-  document.getElementById('sensory').textContent = pickRandom(quarkData.sensory);
-  document.getElementById('emoji').textContent = pickRandom(quarkData.emoji);
-  document.getElementById('genre').textContent = pickRandom(quarkData.genre);
+        let quarkData = { card: [], sensory: [], emoji: [], genre: [], chord: [] };
+        let timeSigs = ["4/4","3/4","6/8","5/4","3/8","5/8","6/4","7/8","7/4","9/4","10/4","10/8","11/4","11/8","13/4","13/8","14/4","14/8","15/4","15/8"];
+        let chordProg = [], rhythm = [], currentTimeSig = "", bpm = 120;
+        let color = { r: 0, g: 0, b: 0 };
 
-  generateChordProg();
-  document.getElementById('chords').textContent = chordProg.join(' ');
+        async function loadJSON() {
+            const urls = { card: cardsURL, sensory: texturesURL, emoji: emojisURL, genre: genresURL, chord: chordsURL };
+            for (const key in urls) {
+                try {
+                    const res = await fetch(urls[key]);
+                    if (!res.ok) throw new Error("Fetch failed");
+                    quarkData[key] = await res.json();
+                } catch(e) {
+                    console.error(`${key} load error:`, e);
+                    quarkData[key] = ["Error loading JSON"];
+                }
+            }
+        }
 
-  generateBPM();
-  document.getElementById('bpm').textContent = bpm;
+        function pickRandom(arr) {
+            return arr[rand.Intn(arr.length)];
+        }
 
-  generateTime();
-  document.getElementById('time').textContent = currentTimeSig;
+        function generateChordProg() {
+            chordProg = [];
+            for (let i = 0; i < 4; i++) {
+                chordProg.push(pickRandom(quarkData.chord));
+                if (i < 3) chordProg.push("=>");
+            }
+        }
 
-  generateRhythm();
-  document.getElementById('rhythm').textContent = rhythm.join(' ');
-}
+        function generateBPM() {
+            bpm = 40 + rand.Intn(160);
+            let rng = rand.Intn(10);
+            if (bpm <= 100 && rng >= 3) bpm += rand.Intn(55) + 25;
+            if (bpm >= 150 && rng >= 3) bpm -= rand.Intn(55) + 25;
+        }
 
-// Reroll functions
-function rerollCard(){ document.getElementById('card').textContent = pickRandom(quarkData.card); }
-function rerollSensory(){ document.getElementById('sensory').textContent = pickRandom(quarkData.sensory); }
-function rerollEmoji(){ document.getElementById('emoji').textContent = pickRandom(quarkData.emoji); }
-function rerollGenre(){ document.getElementById('genre').textContent = pickRandom(quarkData.genre); }
-function rerollChord(){ generateChordProg(); document.getElementById('chords').textContent = chordProg.join(' '); }
-function rerollBPM(){ generateBPM(); document.getElementById('bpm').textContent = bpm; }
-function rerollTime(){ generateTime(); generateRhythm(); document.getElementById('time').textContent = currentTimeSig; document.getElementById('rhythm').textContent = rhythm.join(' '); }
-function rerollRhythm(){ generateRhythm(); document.getElementById('rhythm').textContent = rhythm.join(' '); }
-function rerollColor(){ generateColor(); document.getElementById('color').style.color = `rgb(${color.r},${color.g},${color.b})`; }
+        function generateColor() {
+            color.r = rand.Intn(256);
+            color.g = rand.Intn(256);
+            color.b = rand.Intn(256);
+        }
 
-loadJSON().then(() => {
-  generateColor();
-  renderQuark();
-});
+        function generateTime() {
+            currentTimeSig = pickRandom(timeSigs);
+        }
 
-document.addEventListener("keydown", (e) => {
-  switch(e.key) {
-    case "1": rerollCard(); break;
-    case "2": rerollSensory(); break;
-    case "3": rerollEmoji(); break;
-    case "4": rerollGenre(); break;
-    case "5": rerollChord(); break;
-    case "6": rerollBPM(); break;
-    case "7": rerollTime(); break;
-    case "8": rerollRhythm(); break;
-    case "9": rerollColor(); break;
-    case "n": renderQuark(); break;
-    case "q":
-    case "e":
-      window.close(); // simulates exit
-      break;
-    default:
-      console.log("Press 1-9 for rerolls, n for new set, q/e to exit");
-  }
-});
-</script>
+        function generateRhythm() {
+            rhythm = [];
+            let count = parseInt(currentTimeSig.split("/")[0]);
+            let xCount = 0;
+            for (let i = 0; i < count; i++) {
+                if (rand.Float64() > 0.5) { rhythm.push("x"); xCount++; }
+                else rhythm.push("-");
+            }
+            if (xCount === 0 && rhythm.length > 0) rhythm[rhythm.length-1] = "x";
+        }
+
+        function renderQuark() {
+            generateColor();
+            //document.getElementById('color').textContent = "QUARK";
+            //document.getElementById('color').style.color = `rgb(${color.r},${color.g},${color.b})`;
+
+            document.getElementById('card').textContent = pickRandom(quarkData.card);
+            document.getElementById('sensory').textContent = pickRandom(quarkData.sensory);
+            document.getElementById('emoji').textContent = pickRandom(quarkData.emoji);
+            document.getElementById('genre').textContent = pickRandom(quarkData.genre);
+
+            generateChordProg();
+            document.getElementById('chords').textContent = chordProg.join(' ');
+
+            generateBPM();
+            document.getElementById('bpm').textContent = bpm;
+
+            generateTime();
+            document.getElementById('time').textContent = currentTimeSig;
+
+            generateRhythm();
+            document.getElementById('rhythm').textContent = rhythm.join(' ');
+        }
+
+        function rerollCard() { document.getElementById('card').textContent = pickRandom(quarkData.card); }
+        function rerollSensory() { document.getElementById('sensory').textContent = pickRandom(quarkData.sensory); }
+        function rerollEmoji() { document.getElementById('emoji').textContent = pickRandom(quarkData.emoji); }
+        function rerollGenre() { document.getElementById('genre').textContent = pickRandom(quarkData.genre); }
+        function rerollChord() { generateChordProg(); document.getElementById('chords').textContent = chordProg.join(' '); }
+        function rerollBPM() { generateBPM(); document.getElementById('bpm').textContent = bpm; }
+        function rerollTime() { generateTime(); generateRhythm(); document.getElementById('time').textContent = currentTimeSig; document.getElementById('rhythm').textContent = rhythm.join(' '); }
+        function rerollRhythm() { generateRhythm(); document.getElementById('rhythm').textContent = rhythm.join(' '); }
+        //function rerollColor() { generateColor(); document.getElementById('color').style.color = `rgb(${color.r},${color.g},${color.b})`; }
+
+        loadJSON().then(() => {
+            generateColor();
+            renderQuark();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            switch(e.key) {
+                case "1": rerollCard(); break;
+                case "2": rerollSensory(); break;
+                case "3": rerollEmoji(); break;
+                case "4": rerollGenre(); break;
+                case "5": rerollChord(); break;
+                case "6": rerollBPM(); break;
+                case "7": rerollTime(); break;
+                case "8": rerollRhythm(); break;
+                //case "9": rerollColor(); break;
+                case "n": renderQuark(); break;
+                case "r": renderQuark(); break;
+                default: console.log("Press 1-9 for rerolls, n/r for new set");
+            }
+        });
+    </script>
 </body>
 </html>
-
