@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- ADD THIS CRITICAL VIEWPORT META TAG -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUARK</title>
     <link rel="shortcut icon" type="image/x-icon" href="Quark.ico" />
-    <style>
+<style>
         @font-face {
             font-family: "Mononoki Nerd";
             src: url("Mononoki/MononokiNerdFont-Regular.ttf") format("truetype");
@@ -33,6 +35,16 @@
             font-style: italic;
         }
 
+        /* PREVENT SELECTION AND CONTEXT MENU */
+        html, body, div, span, a {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             font-family: "Mononoki Nerd", monospace;
             font-size: clamp(20px, 2vw, 24px);
@@ -45,18 +57,53 @@
             hyphens: none;
             white-space: normal;
         }
+
+        /* MOBILE FIXES ONLY */
+        @media (max-width: 768px) {
+            * {
+                -webkit-text-size-adjust: none;
+                text-size-adjust: none;
+            }
+            
+            body {
+                overflow-x: hidden;
+                max-width: 100vw;
+                padding: 10px;
+            }
+
+            .quark-section {
+                margin-bottom: 16px;
+            }
+            
+            a {
+                padding: 4px 2px;
+                margin: -4px -2px;
+                /* Better touch handling for mobile */
+                touch-action: manipulation;
+            }
+
+            /* FIX FOR MOBILE ANIMATION BUG */
+            a:active {
+                animation: jiggle 0.3s ease forwards;
+                animation-iteration-count: 1;
+            }
+        }
+
         @keyframes grow-text {
             from { transform: scale(1);}
             to { transform: scale(1.05); }
         }
+        
         a {
             color: rgba(250,250,250,0.95);
             text-decoration: none;
         }
+        
         a:hover {
             display: inline-block;
             animation: grow-text 0.2s ease forwards;
         }
+        
         @keyframes jiggle {
           0%   { transform: rotate(0deg); scale: 1.15;}
           50%  { transform: rotate(1deg); }
@@ -64,6 +111,7 @@
           75%  { transform: rotate(3deg); }
           100% { transform: rotate(0deg); }
         }
+        
         a:active {
             color: rgba(250,250,250,0.95);
             text-decoration: none;
@@ -83,10 +131,11 @@
             height: 100vh;
             z-index: -1;
         }
-    </style>
+</style>
+
 </head>
 
-<body>
+<body onselectstart="return false" oncontextmenu="return false">
     <div id="quark-sketch"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     <script>
@@ -116,7 +165,7 @@
             for (let i = 0; i < cols; i++) {
                 for (let j = 0; j < rows; j++) {
                     let n = noise(i * 0.3, j * 0.3, noiseOffset);
-                    let brightness = map(n, 0, 1, 5, 50); // darker = 40
+                    let brightness = map(n, 0, 1, 5, 50);
                     fill(currentHue, 100, brightness, 0.4);
                     rect(i * cellW, j * cellH, cellW, cellH);
                 }
@@ -131,7 +180,6 @@
     <div class="quark-section">
         <span class="quark-label"></span>
         <a href="#" onclick="renderQuark();"><span id="color" style="color: #DD0C3D">QUARK</span></a>
-        <!-- <a href="#" onclick="renderQuark();"><span id="color" style="color: #ff1744">QUARK</span></a>-->
     </div>
 
     <br>
@@ -171,6 +219,7 @@
     </div>
 
     <script>
+        // Your existing JavaScript remains the same...
         const cardsURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/cards.json";
         const texturesURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/textures.json";
         const emojisURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/emojis.json";
@@ -279,9 +328,6 @@
 
         function renderQuark() {
             generateColor();
-            //document.getElementById('color').textContent = "QUARK";
-            //document.getElementById('color').style.color = `rgb(${color.r},${color.g},${color.b})`;
-
             document.getElementById('card').textContent = pickRandom(quarkData.card);
             document.getElementById('sensory').textContent = pickRandom(quarkData.sensory);
             document.getElementById('emoji').textContent = pickRandom(quarkData.emoji);
@@ -308,7 +354,6 @@
         function rerollBPM() { generateBPM(); document.getElementById('bpm').textContent = bpm; }
         function rerollTime() { generateTime(); generateRhythm(); document.getElementById('time').textContent = currentTimeSig; document.getElementById('rhythm').textContent = rhythm.join(' '); }
         function rerollRhythm() { generateRhythm(); document.getElementById('rhythm').textContent = rhythm.join(' '); }
-        //function rerollColor() { generateColor(); document.getElementById('color').style.color = `rgb(${color.r},${color.g},${color.b})`; }
 
         loadJSON().then(() => {
             generateColor();
@@ -325,7 +370,6 @@
                 case "6": rerollBPM(); break;
                 case "7": rerollTime(); break;
                 case "8": rerollRhythm(); break;
-                //case "9": rerollColor(); break;
                 case "n": renderQuark(); break;
                 case "r": renderQuark(); break;
                 default: console.log("Press 1-9 for rerolls, n/r for new set");
