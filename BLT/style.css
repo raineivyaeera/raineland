@@ -45,7 +45,7 @@ html {
 }
 
 h1 {
-    font-size: 7pc;
+    font-size: 6pc;
     user-select: none;
     color: var(--accent);
 }
