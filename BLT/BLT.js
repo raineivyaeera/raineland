@@ -1,6 +1,6 @@
 let worker = new Worker('TimerWebWorker.js');
 let timertext = document.getElementById('timertexth1');
-const timersound = new Audio('10.2.25 - New BLT Timer SFX 2025-10-020853.mp3');
+const timersound = new Audio('BLT_Fadein.mp3');
 function add1min() {
     worker.postMessage('add1min');
 }
