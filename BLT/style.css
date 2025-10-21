@@ -90,7 +90,7 @@ h1 {
 
 .incdecitem:hover,
 .timerstatusitem:hover {
-    background-color: rgba(198, 40, 40, 0.05);
+    background-color: rgba(198, 40, 40, 0.1);
 }
 
 .timerstatusitem * {
