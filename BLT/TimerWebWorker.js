@@ -1,4 +1,4 @@
-let timertotal = 1500;
+let timertotal = 900;
 let timeron = false;
 let interval;
 
