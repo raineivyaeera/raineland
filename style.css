@@ -37,7 +37,7 @@ a, .hoverable {
     transition: transform 0.15s ease-in-out;
   }
   
-  a:hover, .hoverable:hover {
+.hoverable:hover {
     transform: scale(1.08);
   }
 
