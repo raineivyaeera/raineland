@@ -11,18 +11,18 @@ function pause() { worker.postMessage('pausetimer'); }
 
 worker.onmessage = function(event) {
     const { message, timertotal, mode } = event.data;
-    
-    if(message === "update") {
+
+    if (message === "update") {
         let seconds = timertotal % 60;
         let minutes = Math.floor(timertotal / 60);
-        if(seconds < 10) seconds = "0" + seconds;
-	timertext.innerHTML = minutes + ":" + seconds;
-}
+        if (seconds < 10) seconds = "0" + seconds;
+
+        timertext.innerHTML = minutes + ":" + seconds + (mode === "up" ? " ↑" : " ↓");
+    }
 };
 
-// Listen for keypress to toggle mode
 document.addEventListener('keypress', (e) => {
-    if(e.key === 'c') {
+    if (e.key === 'c') {
         worker.postMessage('togglemode');
     }
 });
