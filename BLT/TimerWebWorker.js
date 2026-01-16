@@ -2,7 +2,7 @@ let initialTime = 900; // 15 minutes
 let timertotal = initialTime;
 let timeron = false;
 let interval;
-let mode = "down"; // "down" or "up"
+let mode = "down";
 
 self.onmessage = function(event) {
     const msg = event.data;
@@ -29,10 +29,16 @@ self.onmessage = function(event) {
             if (!timeron) {
                 timeron = true;
                 interval = setInterval(() => {
-                    if (mode === "down") {
-                        if (timertotal > 0) timertotal--;
-                        else { timeron = false; clearInterval(interval); }
-                    } else {
+		    if (mode === "down") {
+			if (timertotal > 0) {
+			    timertotal--;
+			} else {
+			    timeron = false;
+			    clearInterval(interval);
+			    postMessage({ message: "timersound" });
+			}
+		    }
+                    else {
                         timertotal++;
                     }
                     sendUpdate();
@@ -44,11 +50,8 @@ self.onmessage = function(event) {
             mode = mode === "down" ? "up" : "down";
 
             if (!timeron) {
-                // If stopped → reset cleanly
                 timertotal = mode === "down" ? initialTime : 0;
             } 
-            // If running → keep current timertotal and reinterpret it
-            // (no change needed)
 
             sendUpdate();
             break;
@@ -58,4 +61,3 @@ self.onmessage = function(event) {
 function sendUpdate() {
     postMessage({ message: "update", timertotal, mode });
 }
-

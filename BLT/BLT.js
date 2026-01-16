@@ -1,5 +1,6 @@
 let worker = new Worker('TimerWebWorker.js');
 let timertext = document.getElementById('timertexth1');
+const timersound = new Audio('BLT_Fadein.mp3');
 
 function add1min() { worker.postMessage('add1min'); }
 function add5min() { worker.postMessage('add5min'); }
@@ -11,6 +12,12 @@ function pause() { worker.postMessage('pausetimer'); }
 
 worker.onmessage = function(event) {
     const { message, timertotal, mode } = event.data;
+
+    if (message === "timersound") {
+        timersound.currentTime = 0;
+        timersound.play();
+        return;
+    }
 
     if (message === "update") {
         let seconds = timertotal % 60;
