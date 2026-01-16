@@ -16,8 +16,8 @@ worker.onmessage = function(event) {
         let seconds = timertotal % 60;
         let minutes = Math.floor(timertotal / 60);
         if(seconds < 10) seconds = "0" + seconds;
-        timertext.innerHTML = minutes + ":" + seconds + (mode === "up" ? " ↑" : " ↓");
-    }
+	timertext.innerHTML = minutes + ":" + seconds;
+}
 };
 
 // Listen for keypress to toggle mode
