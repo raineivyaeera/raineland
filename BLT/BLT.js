@@ -29,7 +29,7 @@ worker.onmessage = function(event) {
 };
 
 document.addEventListener('keypress', (e) => {
-    if (e.key === 'c') {
+    if (e.key === 'c' || 'r' || 's') {
         worker.postMessage('togglemode');
     }
 });
