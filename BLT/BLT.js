@@ -23,8 +23,7 @@ worker.onmessage = function(event) {
         let seconds = timertotal % 60;
         let minutes = Math.floor(timertotal / 60);
         if (seconds < 10) seconds = "0" + seconds;
-
-        timertext.innerHTML = minutes + ":" + seconds;
+	timertext.innerHTML = minutes + ":" + seconds + (mode === "up" ? "" : "");
     }
 };
 
