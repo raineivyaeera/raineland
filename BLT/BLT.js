@@ -1,7 +1,9 @@
 let worker = new Worker('TimerWebWorker.js');
 let timertext = document.getElementById('timertexth1');
 const timersound = new Audio('BLT_Fadein.mp3');
-const timerContainer = document.getElementById('timertext'); // for background color
+const timerContainer = document.getElementById('timertext'); // container to change background
+
+let currentMode = "down"; // keep track of the last mode to know when it changes
 
 function add1min() { worker.postMessage('add1min'); }
 function add5min() { worker.postMessage('add5min'); }
@@ -10,6 +12,14 @@ function sub5min() { worker.postMessage('sub5min'); }
 function reset() { worker.postMessage('reset'); }
 function start() { worker.postMessage('starttimer'); }
 function pause() { worker.postMessage('pausetimer'); }
+
+function updateBackgroundColor(mode) {
+    if (mode === "up") {
+        timerContainer.style.backgroundColor = "#0f1b33"; // stopwatch mode color
+    } else {
+        timerContainer.style.backgroundColor = "#121c2b"; // timer mode color
+    }
+}
 
 worker.onmessage = function(event) {
     const { message, timertotal, mode } = event.data;
@@ -25,21 +35,18 @@ worker.onmessage = function(event) {
         let minutes = Math.floor(timertotal / 60);
         if (seconds < 10) seconds = "0" + seconds;
 
-        // No arrow, just the time
         timertext.innerHTML = minutes + ":" + seconds;
 
-        // Change background color depending on mode
-        if (mode === "up") {
-            timerContainer.style.backgroundColor = "#0f1b33"; // dark navy
-        } else {
-            timerContainer.style.backgroundColor = "#121c2b"; // slightly different dark shade
+        // only change background color if mode changed
+        if (mode !== currentMode) {
+            currentMode = mode;
+            updateBackgroundColor(mode);
         }
     }
 };
 
 document.addEventListener('keypress', (e) => {
-    if (e.key === 'c' || 'r' || 's') {
+    if (e.key === 'c') {
         worker.postMessage('togglemode');
     }
 });
-
