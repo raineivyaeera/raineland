@@ -12,11 +12,13 @@ function pause() { worker.postMessage('pausetimer'); }
 
 worker.onmessage = function(event) {
     const { message, timertotal, mode } = event.data;
+
     if (message === "timersound") {
         timersound.currentTime = 0;
         timersound.play();
         return;
     }
+
     if (message === "update") {
         let seconds = timertotal % 60;
         let minutes = Math.floor(timertotal / 60);
