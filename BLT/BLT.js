@@ -57,4 +57,10 @@ document.addEventListener('keypress', (e) => {
     if (e.key === 'l') {
         worker.postMessage('add1min');
     }
+    if (e.key === 'enter') {
+        worker.postMessage('starttimer');
+    }
+    if (e.key === 'space') {
+        worker.postMessage('pausetimer');
+    }
 });
