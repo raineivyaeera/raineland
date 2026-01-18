@@ -63,4 +63,7 @@ document.addEventListener('keypress', (e) => {
     if (e.key === 'space') {
         worker.postMessage('pausetimer');
     }
+    if (e.key === 'r') {
+        worker.postMessage('reset');
+    }
 });
