@@ -1,9 +1,9 @@
 let worker = new Worker('TimerWebWorker.js');
 let timertext = document.getElementById('timertexth1');
 const timersound = new Audio('BLT_Fadein.mp3');
-const timerContainer = document.getElementById('timertext'); // container to change background
+const timerContainer = document.getElementById('timertext');
 
-let currentMode = "down"; // keep track of the last mode to know when it changes
+let currentMode = null;
 
 function add1min() { worker.postMessage('add1min'); }
 function add5min() { worker.postMessage('add5min'); }
@@ -15,9 +15,9 @@ function pause() { worker.postMessage('pausetimer'); }
 
 function updateBackgroundColor(mode) {
     if (mode === "up") {
-        timerContainer.style.backgroundColor = "#0f1b33"; // stopwatch mode color
+        timerContainer.style.backgroundColor = "#0f1b33";
     } else {
-        timerContainer.style.backgroundColor = "#121c2b"; // timer mode color
+        timerContainer.style.backgroundColor = "#121c2b";
     }
 }
 
@@ -37,7 +37,6 @@ worker.onmessage = function(event) {
 
         timertext.innerHTML = minutes + ":" + seconds;
 
-        // only change background color if mode changed
         if (mode !== currentMode) {
             currentMode = mode;
             updateBackgroundColor(mode);
