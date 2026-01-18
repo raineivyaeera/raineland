@@ -97,16 +97,16 @@ h1 {
     pointer-events: none;
 }
 
-h1:hover {
-    background-color: transparent;
-    color: var(--accent-hover);
-}
-
 #timertext {
     background-color: var(--background);
-    transition: background-color 0.25s ease;
+    transition: background-color 0.5s ease;
 }
 
 #timertext.stopwatch-mode {
     background-color: rgb(8, 10, 22);
+}
+
+h1:hover {
+    background-color: rgba(198, 40, 40, 0.1);
+    color: var(--accent-hover);
 }
