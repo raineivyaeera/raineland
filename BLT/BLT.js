@@ -42,7 +42,7 @@ worker.onmessage = function(event) {
 };
 
 document.addEventListener('keypress', (e) => {
-    if (e.key === 'c') {
+    if (e.key === 'c' || 's') {
         worker.postMessage('togglemode');
     }
     if (e.key === 'k') {
