@@ -57,10 +57,10 @@ document.addEventListener('keypress', (e) => {
     if (e.key === 'l') {
         worker.postMessage('add1min');
     }
-    if (e.key === 'enter') {
+    if (e.key === 'Enter') {
         worker.postMessage('starttimer');
     }
-    if (e.key === 'space') {
+    if (e.key === 'Space') {
         worker.postMessage('pausetimer');
     }
     if (e.key === 'r') {
