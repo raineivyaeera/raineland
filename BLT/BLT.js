@@ -13,14 +13,6 @@ function reset() { worker.postMessage('reset'); }
 function start() { worker.postMessage('starttimer'); }
 function pause() { worker.postMessage('pausetimer'); }
 
-function updateBackgroundColor(mode) {
-    if (mode === "up") {
-        timerContainer.style.backgroundColor = "#0f1b33";
-    } else {
-        timerContainer.style.backgroundColor = "#121c2b";
-    }
-}
-
 worker.onmessage = function(event) {
     const { message, timertotal, mode } = event.data;
 
@@ -39,7 +31,12 @@ worker.onmessage = function(event) {
 
         if (mode !== currentMode) {
             currentMode = mode;
-            updateBackgroundColor(mode);
+
+            if (mode === "up") {
+                timerContainer.classList.add("stopwatch-mode");
+            } else {
+                timerContainer.classList.remove("stopwatch-mode");
+            }
         }
     }
 };
