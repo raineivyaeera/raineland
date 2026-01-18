@@ -60,7 +60,7 @@ document.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         worker.postMessage('starttimer');
     }
-    if (e.key === 'Space') {
+    if (e.key === ' ') {
         worker.postMessage('pausetimer');
     }
     if (e.key === 'r') {
