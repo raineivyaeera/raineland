@@ -45,16 +45,16 @@ document.addEventListener('keypress', (e) => {
     if (e.key === 'c') {
         worker.postMessage('togglemode');
     }
-    if (e.key === 'up' || 'k') {
+    if (e.key === 'up arrow' || 'k') {
         worker.postMessage('add5min');
     }
-    if (e.key === 'down' || 'j') {
+    if (e.key === 'down arrow' || 'j') {
         worker.postMessage('sub5min');
     }
-    if (e.key === 'left' || 'h') {
+    if (e.key === 'left arrow' || 'h') {
         worker.postMessage('sub1min');
     }
-    if (e.key === 'right' || 'l') {
+    if (e.key === 'right arrow' || 'l') {
         worker.postMessage('add1min');
     }
 });
