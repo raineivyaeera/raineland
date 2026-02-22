@@ -48,7 +48,7 @@
             font-family: "Mononoki Nerd", monospace;
             font-size: clamp(24px, 2vw, 24px);
             padding: 20px;
-            color: rgba(250,250,250,0.85);
+            color: rgba(250,250,250,0.95);
             background-color: #000;
             position: relative;
             word-break: keep-all;
@@ -57,7 +57,6 @@
             white-space: normal;
         }
 
-        /* MOBILE FIXES ONLY */
         @media (max-width: 768px) {
             * {
                 -webkit-text-size-adjust: none;
@@ -77,11 +76,9 @@
             a {
                 padding: 4px 2px;
                 margin: -4px -2px;
-                /* Better touch handling for mobile */
                 touch-action: manipulation;
             }
 
-            /* FIX FOR MOBILE ANIMATION BUG */
             a:active {
                 animation: jiggle 0.3s ease forwards;
                 animation-iteration-count: 1;
@@ -217,7 +214,6 @@
     </div>
 
     <script>
-        // Your existing JavaScript remains the same...
         const cardsURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/cards.json";
         const texturesURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/textures.json";
         const emojisURL = "https://raw.githubusercontent.com/raineivyaeera/Quark/main/emojis.json";
