@@ -817,6 +817,12 @@ body {
     grid-template-columns: 1fr;
     gap: 0.6rem;
   }
+
+  /* single column: let the bordered cover shrink to the artwork instead of
+     stretching across the whole row */
+  .mastering-cover {
+    justify-self: start;
+  }
 }
 
 @media (max-width: 22rem) {
