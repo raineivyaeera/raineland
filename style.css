@@ -42,6 +42,7 @@ html {
   font-family: var(--font);
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 *, *::before, *::after {
