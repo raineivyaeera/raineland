@@ -1,0 +1,6 @@
+# local backup of the previous site — never deployed
+_old/
+
+# OS junk
+.DS_Store
+Thumbs.db
