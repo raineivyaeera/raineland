@@ -75,7 +75,6 @@ html {
   color: var(--cream);
   font-family: var(--font);
   box-sizing: border-box;
-  scroll-behavior: smooth;
   background-color: var(--bg);
 }
 
@@ -756,10 +755,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .terminal .cursor {
     animation: none;
     background-color: var(--red);
@@ -1235,6 +1230,27 @@ body {
           }
         });
       });
+    })();
+
+    // Put the scroll position back before the first frame is painted.
+    // Firefox normally restores it after painting, which shows the top of the
+    // page for a moment on reload now that the page paints almost instantly.
+    (function () {
+      var KEY = 'raineland:scroll';
+      var here = location.pathname + location.search;
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        var kind = nav && nav.type;
+        if (kind === 'reload' || kind === 'back_forward') {
+          var saved = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+          if (saved && saved.u === here && saved.y > 0) window.scrollTo(0, saved.y);
+        }
+        addEventListener('pagehide', function () {
+          try {
+            sessionStorage.setItem(KEY, JSON.stringify({ u: here, y: Math.round(window.scrollY) }));
+          } catch (err) {}
+        }, { passive: true });
+      } catch (err) {}
     })();
   </script>
 
