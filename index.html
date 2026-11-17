@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" style="background-color:#130104">
 <head>
+  <!-- first thing the parser sees: paint everything dark immediately -->
+  <style>html,body{background-color:#130104}html{color-scheme:dark}</style>
   <meta charset="UTF-8">
-
-  <!-- first bytes parsed -> dark canvas, before any request or layout.
-       Firefox paints its default (white) canvas until the root background is
-       known, so this has to be inline, above every external resource. -->
-  <style>
-    html, body { background-color: #130104; }
-    html { color-scheme: dark; }
-  </style>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[rainey ~] =></title>
@@ -834,7 +828,7 @@ body {
 
   </style>
 </head>
-<body>
+<body style="background-color:#130104">
 
   <main class="terminal">
 
